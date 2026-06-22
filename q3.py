@@ -13,18 +13,19 @@ class Onibus():
     
     def __getitem__(self, indice):
         if 0 < indice <= len(self.__assentos):
-            self.__assentos = [not indice for indice in self.__assentos]
+            return self.__assentos[indice]
         else:
             raise IndexError(f"Escolha um valor entre 0 e {len(self.assentos)}")
     
     def __setitem__(self, indice, valor):
-        if 0 < indice <= len(self.__assentos):
-            self.__assentos = [not indice for valor in self.__assentos]
-        else:
-            raise IndexError(f"Escolha um valor entre 0 e {len(self.assentos)}")
+            if 0 < indice <= len(self.__assentos):
+                self.__assentos[indice] = valor
+            else:
+                raise IndexError(f"Escolha um valor entre 0 e {len(self.assentos)}")
     
     def __str__(self):
-        return f"Ônibus (Placa: {self.__placa} - Motorista: {self.__nome_motorista} /n Assentos totais: {len(self.__assentos)} /n Assentos ocupados: {self.__assentos.count(True)} /n Assentos livres: {self.__assentos.count(False)})"
+        return f"Ônibus Placa: {self.__placa} - Motorista: {self.__nome_motorista} \nAssentos totais: {len(self.__assentos)} \nAssentos ocupados: {self.__assentos.count(True)} \nAssentos livres: {self.__assentos.count(False)}"
 
 onibus = Onibus("ABC-1234", "João Silva", 10)
-onibus.__str__()
+onibus[3] = True
+print(onibus)
